@@ -112,12 +112,11 @@ function chatList(data, ID) {
                 var li = document.createElement("li")
                 var p = document.createElement("p")
                 var span = document.createElement("span")
-                var btn = document.createElement("button")
+                
             
-                btn.innerText = "Delete"
-                btn.setAttribute("onclick", "deleteMessage(this.id)")
+                
                 p.innerText = data[i].txt
-                btn.id = data[i]._id
+                
                 var date = data[i].date
                 var date0 = date.substring(0,10)
                 var date1 = date.substring(11,19)
@@ -125,12 +124,19 @@ function chatList(data, ID) {
                 
                 if ( data[i].name === loginname) {
                     li.classList.add("myOwn")
+                    var btn = document.createElement("button")
+                    btn.innerText = "Delete"
+                    btn.setAttribute("onclick", "deleteMessage(this.id)")
+                    btn.id = data[i]._id
+                    p.appendChild(span)
+                    p.appendChild(btn)
+                    li.appendChild(p)
+                    ul.appendChild(li)
+                } else {
+                    p.appendChild(span)
+                    li.appendChild(p)
+                    ul.appendChild(li)
                 }
-      
-                p.appendChild(span)
-                p.appendChild(btn)
-                li.appendChild(p)
-                ul.appendChild(li)
             }
         }
 }
@@ -221,6 +227,8 @@ function updateScroll(){
 
 getChatPartners()
 
-if(document.getElementById("chatName").innerText != "") {
-    window.setInterval(function(){refreshChatList()}, 5000);
-}
+window.setInterval(function(){
+        if(document.getElementById("chatName").innerText != "") {
+            refreshChatList()
+        }
+}, 5000);
