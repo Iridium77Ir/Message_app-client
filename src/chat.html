@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Message_app</title>
+    <script defer src="chat.js"></script>
+    <link rel="stylesheet" href="chat.css">
+  </head>
+  <body>
+
+    <div id="container">
+
+      <div id="appNamediv">
+        <h3 id="app-name">Message_app</h3>
+      </div>
+        
+      <div id="logoutdiv">
+        <div><button id="logout" onclick="logout()">Logout</button></div>   
+      </div>
+      
+
+      <div id="userListdiv">
+        <button onclick="refreshNameList()">Refresh</button>
+          <ul id="userUl">
+
+          </ul>
+      </div>
+
+
+      <div id="newChatdiv">
+        <button id="newChat" onclick="openNewChat()">+</button>
+      </div>
+
+      <div id="newChatinputdiv">
+        <label for="newName">Name</label>
+        <input name="newName" type="text" id="newName">
+        <button type="newNameChat" onclick="newChat()">Send</button>
+        <button onclick="window.location.replace('chat.html')">Cancel</button>
+      </div>
+
+      <div id="chatdiv">
+        <header id="chatName"></header>
+        <button onclick="refreshChatList()">Refresh</button>
+        <button onclick="window.location.replace('chat.html')">Cancel</button>
+        
+        <ul id="messageList">
+        </ul>
+
+      </div>
+
+
+      <div id="newMessagediv">
+        <div><input type="text" id="chatMessage" placeholder="Message..."></div>
+        <div><button id="sendMessage" onclick="newMessage()">Send</button></div>
+      </div>
+
+      <p id="error-box"></p>
+    </div>
+    
+  </body>
+</html>
