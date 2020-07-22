@@ -131,6 +131,7 @@ Grid stuff
 #userListdiv ul li {
     list-style: none;
     padding: 0.5rem;
+    font-size: 15px;
 }
 #userListdiv ul li button {
     color: #EBE1CF;
@@ -151,7 +152,7 @@ button {
     display: block;
     padding: 5px 10px;
     color: #03e9f4;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
@@ -172,7 +173,7 @@ button:hover {
 }
 
 #newChatdiv button {
-    font-size: 20px;
+    font-size: 30px;
 }
 
 
@@ -187,9 +188,17 @@ button:hover {
 }
 #newChatinputdiv input {
     margin-bottom: 1rem;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-bottom: solid 2px white;
+    width: 70%;
+    float: left;
+    font-size: 16px;
 }
 #newChatinputdiv button {
     margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
 #chatdiv {
@@ -202,7 +211,7 @@ button:hover {
 
 #chatdiv header {
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 1rem;
 }
 #chatdiv button {
@@ -249,6 +258,9 @@ button:hover {
 #chatdiv ul li button {
     margin: 0.4rem;
 }
+
+
+
 #newMessagediv input {
     background-color: transparent;
     color: white;
@@ -256,4 +268,5 @@ button:hover {
     border-bottom: solid 2px white;
     width: 70%;
     float: left;
+    font-size: 20px;
 }

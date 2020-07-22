@@ -87,3 +87,6 @@ typings/
 
 # Electron-Forge
 out/
+
+password.txt
+name.txt

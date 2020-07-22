@@ -42,7 +42,11 @@ async function getChatPartners(first = "false") {
             }
             appendChatPartnersToList()
         } else {  
-            document.getElementById("error-box").innerText = data.message
+            if(data.message == "Could not find user") {
+                document.getElementById("error-box").innerText = "The password is incorrect"
+            } else {
+                document.getElementById("error-box").innerText = data.message
+            }
         }
 
     }).catch(data => {
@@ -216,3 +220,5 @@ function updateScroll(){
 
 
 getChatPartners()
+
+window.setInterval(function(){refreshChatList()}, 5000);
