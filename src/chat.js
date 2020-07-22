@@ -221,4 +221,6 @@ function updateScroll(){
 
 getChatPartners()
 
-window.setInterval(function(){refreshChatList()}, 5000);
+if(document.getElementById("chatName").innerText != "") {
+    window.setInterval(function(){refreshChatList()}, 5000);
+}
