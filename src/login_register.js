@@ -94,7 +94,6 @@ async function registersave() {
             if ( data.message == 'E11000 duplicate key error collection: chat_server.users index: name_1 dup key: { : "Niklas" }') {
                 document.getElementById("error-box").innerText = "This user already exists"
             }
-            document.getElementById("error-box").innerText = data.message
         }
         
     }).catch(data => {
