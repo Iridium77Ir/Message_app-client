@@ -34,7 +34,16 @@ async function loginsave() {
     var loginname = document.getElementById("name").value
     var loginpassword = document.getElementById("password").value
 
-    await POST_API('http://10.0.0.9:3000/users/check', { name: loginname })
+    if ( loginname == null || loginname == "") {
+        document.getElementById("error-box").innerText = "Please enter a Name"
+        return
+    }
+    if ( loginpassword == null || loginpassword == "") {
+        document.getElementById("error-box").innerText = "Please enter a password"
+        return
+    }
+
+    await POST_API('http://10.0.0.9:3000/users/check/pass', { name: loginname, password: loginpassword })
     .then(data => {
         
         fs.writeFileSync("name.txt", loginname, { encoding: "utf8" })
@@ -54,6 +63,24 @@ async function registersave() {
 
     var loginname = document.getElementById("name").value
     var loginpassword = document.getElementById("password").value
+    var loginrepeatpassword = document.getElementById("repeatpassword").value
+
+    if ( loginname == null || loginname == "") {
+        document.getElementById("error-box").innerText = "Please enter a Name"
+        return
+    }
+    if ( loginpassword == null || loginpassword == "") {
+        document.getElementById("error-box").innerText = "Please enter a password"
+        return
+    }
+    if ( loginrepeatpassword == null || loginrepeatpassword == "") {
+        document.getElementById("error-box").innerText = "Please repeat your password"
+        return
+    }
+    if (loginpassword != loginrepeatpassword) {
+        document.getElementById("error-box").innerText = "Passwords do not match"
+        return
+    }
 
     await POST_API('http://10.0.0.9:3000/users/newUser', { name: loginname, password: loginpassword })
     .then(data => {
