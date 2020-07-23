@@ -51,7 +51,6 @@ async function getChatPartners(first = "false") {
 
     }).catch(data => {
         // MAKE ERROR APPEAR
-        console.log(data)
     })
 }
 
@@ -98,12 +97,11 @@ async function getChat(ID) {
         }
     }).catch(data => {
         // MAKE ERROR APPEAR
-        console.log(data)
     })
     updateScroll()
 }
 
-function chatList(data, ID) {
+async function chatList(data, ID) {
 
     var ul = document.getElementById("messageList")
         for (var i = 0; i < data.length; i++) {
@@ -125,14 +123,46 @@ function chatList(data, ID) {
                 if ( data[i].name === loginname) {
                     li.classList.add("myOwn")
                     var btn = document.createElement("button")
+                    
                     btn.innerText = "Delete"
                     btn.setAttribute("onclick", "deleteMessage(this.id)")
                     btn.id = data[i]._id
+                    var read = document.createElement("span")
+                    read.innerText = " "+"//"+" "
+
+
+                    if (data[i].read != null && data[i].read == true) {
+                        read.style.color = "#03e9f4"
+                    } else {
+                        read.style.color = "#ffffff"
+                    }
+
+
+
+                    read.style.fontSize = "20px"
+                    p.appendChild(read)
                     p.appendChild(span)
                     p.appendChild(btn)
                     li.appendChild(p)
                     ul.appendChild(li)
                 } else {
+
+                    if (data[i].read != true && !li.classList.contains("read")) {
+                        li.classList.add("read")
+
+                        await POST_API('http://10.0.0.9:3000/messages', { name: loginname, password: loginpassword, id: data[i]._id }, 'PUT')
+                        .then(data => {
+                            if (datastatus != 400) {
+                                document.getElementById("error-box").innerText = ""
+                            } else {  
+                                document.getElementById("error-box").innerText = data.message
+                            }  
+                        }).catch(data => {
+                            // MAKE ERROR APPEAR
+                        })
+
+                    }
+
                     p.appendChild(span)
                     li.appendChild(p)
                     ul.appendChild(li)
@@ -151,7 +181,6 @@ async function deleteMessage(ID) {
         }
     }).catch(data => {
         // MAKE ERROR APPEAR
-        console.log(data)
     })
 }
 
@@ -172,7 +201,6 @@ async function newMessage() {
             }
         }).catch(data => {
             // MAKE ERROR APPEAR
-            console.log(data)
         })
     } else {
         document.getElementById("chatMessage").placeholder = "Please enter a message..."
@@ -193,7 +221,6 @@ async function newChat() {
         }
     }).catch(data => {
         // MAKE ERROR APPEAR
-        console.log(data)
     })
 }
 
@@ -219,9 +246,13 @@ function logout() {
 
 
 //Scrolling to bottom auto
-function updateScroll(){
-    var scrollable = document.getElementById("messageList");
-    scrollable.scrollTop = scrollable.scrollHeight - scrollable.clientHeight
+function updateScroll() {
+    var scrollable = document.getElementById("messageList")
+    if ( scrollable.scrollTop != scrollable.scrollHeight && scrollable.scrollTop != 0) {
+        scrollable.scrollTop = scrollable.scrollTop
+    } else { 
+        scrollable.scrollTop = scrollable.scrollHeight - scrollable.clientHeight
+    }
 }
 
 
