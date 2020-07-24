@@ -3,6 +3,7 @@ const path = require('path');
 
 var login_name = fs.readFileSync("name.txt", { encoding: "utf8" }, (err) => {})
 var login_password = fs.readFileSync("password.txt", { encoding: "utf8" }, (err) => {})
+var ip = fs.readFileSync("ip.txt", { encoding: "utf8" })
 
 var datastatus = 0
 
@@ -43,7 +44,7 @@ async function loginsave() {
         return
     }
 
-    await POST_API('http://10.0.0.9:3000/users/check/pass', { name: loginname, password: loginpassword })
+    await POST_API('http://' + ip +'/users/check/pass', { name: loginname, password: loginpassword })
     .then(data => {
         
         fs.writeFileSync("name.txt", loginname, { encoding: "utf8" })
@@ -82,7 +83,7 @@ async function registersave() {
         return
     }
 
-    await POST_API('http://10.0.0.9:3000/users/newUser', { name: loginname, password: loginpassword })
+    await POST_API('http://' + ip +'/users/newUser', { name: loginname, password: loginpassword })
     .then(data => {
         
         fs.writeFileSync("name.txt", loginname, { encoding: "utf8" })
