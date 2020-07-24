@@ -4,6 +4,7 @@ const path = require('path');
 var login_name = fs.readFileSync("name.txt", { encoding: "utf8" }, (err) => {})
 var login_password = fs.readFileSync("password.txt", { encoding: "utf8" }, (err) => {})
 var ip = fs.readFileSync("ip.txt", { encoding: "utf8" })
+console.log('http://' + ip +'/users/check/pass')
 
 var datastatus = 0
 

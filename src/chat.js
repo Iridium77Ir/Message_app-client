@@ -2,7 +2,7 @@ const fs = require("fs")
 
 var loginname = fs.readFileSync("name.txt", { encoding: "utf8" })
 var loginpassword = fs.readFileSync("password.txt", { encoding: "utf8" })
-var ip = fs.readFileSync("password.txt", { encoding: "utf8" })
+var ip = fs.readFileSync("ip.txt", { encoding: "utf8" })
 
 var partners = []
 var datastatus = 0
