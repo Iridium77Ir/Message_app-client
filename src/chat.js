@@ -29,7 +29,7 @@ async function getChatPartners(first = "false") {
         document.getElementById("userUl").innerHTML = ""
     }
 
-    await POST_API('http://' + ip +'/messages', { name: loginname, password: loginpassword })
+    await POST_API('https://' + ip +'/messages', { name: loginname, password: loginpassword })
     .then(data => {
 
         if (datastatus != 400) {
@@ -78,7 +78,7 @@ async function getChat(ID) {
 
     document.getElementById("chatName").innerText = ID
 
-    await POST_API('http://' + ip +'/messages', { name: loginname, password: loginpassword })
+    await POST_API('https://' + ip +'/messages', { name: loginname, password: loginpassword })
     .then(data => {
         if (datastatus != 400) {
             for (var i = 0; i < data.length; i++) {
@@ -151,7 +151,7 @@ async function chatList(data, ID) {
                     if (data[i].read != true && !li.classList.contains("read")) {
                         li.classList.add("read")
 
-                        await POST_API('http://' + ip +'/messages', { name: loginname, password: loginpassword, id: data[i]._id }, 'PUT')
+                        await POST_API('https://' + ip +'/messages', { name: loginname, password: loginpassword, id: data[i]._id }, 'PUT')
                         .then(data => {
                             if (datastatus != 400) {
                                 document.getElementById("error-box").innerText = ""
@@ -173,7 +173,7 @@ async function chatList(data, ID) {
 }
 
 async function deleteMessage(ID) {
-    await POST_API('http://' + ip +'/messages', { name: loginname, password: loginpassword, id: ID }, 'DELETE')
+    await POST_API('https://' + ip +'/messages', { name: loginname, password: loginpassword, id: ID }, 'DELETE')
     .then(data => {
         if (datastatus != 400) {
             document.getElementById(ID).parentElement.parentElement.style.display = "none"
@@ -213,7 +213,7 @@ async function newChat() {
 
     var rec = document.getElementById("newName").value
 
-    await POST_API('http://' + ip +'/messages/newMessage', { name: loginname, password: loginpassword, txt: loginname + " opened a chat with you!", recipient: rec }, 'POST')
+    await POST_API('https://' + ip +'/messages/newMessage', { name: loginname, password: loginpassword, txt: loginname + " opened a chat with you!", recipient: rec }, 'POST')
     .then(data => {
         if (datastatus != 400) {
             window.location.replace("chat.html")
